@@ -51,12 +51,12 @@ export function Events() {
         </motion.article>
       )}
 
-      <section aria-labelledby="archive-title">
+      {archive.length > 0 && <section aria-labelledby="archive-title">
         <div className="mb-7 flex items-end justify-between gap-4"><div><span className="font-mono text-xs uppercase tracking-[0.2em] text-tertiary-cyan">More transmissions</span><h2 id="archive-title" className="mt-2 font-display text-3xl font-semibold text-starlight-white">Event archive</h2></div><span className="font-mono text-xs text-metallic-silver/60">{archive.length} records</span></div>
         <div className="grid gap-4 md:grid-cols-2">
           {archive.map((event) => <article key={event.id} className="rounded-xl border border-metallic-silver/20 bg-space-black/45 p-5 transition-colors hover:border-tertiary-cyan/45"><div className="flex items-center justify-between gap-4"><span className="font-mono text-[10px] uppercase tracking-[0.16em] text-tertiary-cyan">{categoryLabels[event.category]}</span><span className="font-mono text-[10px] text-metallic-silver/60">{event.date.slice(0, 4)}</span></div><h3 className="mt-4 font-display text-2xl font-semibold text-starlight-white">{event.title}</h3><p className="mt-2 text-sm leading-6 text-metallic-silver">{event.summary}</p></article>)}
         </div>
-      </section>
+      </section>}
     </div>
   );
 }
