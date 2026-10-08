@@ -5,7 +5,6 @@ import { navLinks, siteConfig } from "@/constants/site";
 import { INTRO_TIMING } from "@/constants/intro";
 import { useIntroContext } from "@/context/IntroContext";
 import logo from "@/assets/images/astra-logo.png";
-import { Button } from "@/components/common/Button";
 
 const FLIGHT_SECONDS = INTRO_TIMING.flightMs / 1000;
 
@@ -122,12 +121,6 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
-          <Button to="/contact" variant="primary" className="px-5 py-2 text-xs">
-            Join Us
-          </Button>
-        </div>
-
         <button
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
@@ -154,14 +147,6 @@ export function Navbar() {
               <NavItem to={link.to} label={link.label} />
             </div>
           ))}
-          <Button
-            to="/contact"
-            variant="primary"
-            className="mt-2 w-full"
-            onClick={() => setOpen(false)}
-          >
-            Join Us
-          </Button>
         </nav>
       )}
     </motion.header>

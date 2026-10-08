@@ -16,5 +16,4 @@ export const navLinks = [
   { label: "Events", to: "/events" },
   { label: "Team", to: "/team" },
   { label: "Gallery", to: "/gallery" },
-  { label: "Reports", to: "/reports" },
 ];

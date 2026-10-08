@@ -182,9 +182,6 @@ export function Hero() {
           <Button to="/events" variant="primary">
             Explore Events
           </Button>
-          <Button to="/contact" variant="ghost">
-            Join the Crew
-          </Button>
         </motion.div>
       </motion.div>
 

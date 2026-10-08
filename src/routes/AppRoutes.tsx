@@ -14,8 +14,6 @@ export function AppRoutes() {
         <Route path="/events" element={<Events />} />
         <Route path="/team" element={<Team />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/reports" element={<ComingSoon title="Reports" />} />
-        <Route path="/contact" element={<ComingSoon title="Contact" />} />
         <Route path="*" element={<ComingSoon title="Page not found" />} />
       </Route>
     </Routes>

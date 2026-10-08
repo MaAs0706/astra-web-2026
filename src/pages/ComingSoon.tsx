@@ -5,9 +5,7 @@ interface ComingSoonProps {
 }
 
 /**
- * Placeholder for pages not yet designed (Events, Team, Gallery, Reports,
- * Contact). Home is the only page in scope for this build phase — see
- * ARCHITECTURE.md. Replace each with its real page as it's designed.
+ * Placeholder for future pages and the 404 fallback.
  */
 export function ComingSoon({ title }: ComingSoonProps) {
   return (
