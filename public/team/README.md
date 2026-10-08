@@ -1,12 +1,13 @@
 # Team photos
 
-Place each portrait in this folder and add its path to the matching record in
-`src/data/teamMembers.ts`:
+Place each portrait in this folder and name it with the member ID from
+`src/data/teamMembers.ts`. Nothing else needs to be edited:
 
-```ts
-{ id: "parvathy-gopu", /* ... */, photo: "/team/parvathy-gopu.jpg" }
+```
+public/team/parvathy-gopu.jpg
 ```
 
 Use a square or near-square JPG, PNG, or WebP image. The Team page crops it to
 a circular portrait automatically and falls back to the member's initials when
-no `photo` path is supplied.
+the image has not been added yet. A `photo` property remains available only
+when a member needs a custom image path.

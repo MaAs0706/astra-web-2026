@@ -2,8 +2,8 @@ import type { TeamMember } from "@/types/TeamMember";
 
 /**
  * Astra MEC crew manifest. The Team page groups this list into staff,
- * executive command, and department leads. Add `photo: "/team/member-id.jpg"`
- * to any record after placing that image in public/team/.
+ * executive command, and department leads. Portraits are loaded automatically
+ * from public/team/<member-id>.jpg; no roster edit is required for photos.
  */
 export const teamMembers: TeamMember[] = [
   { id: "vyshnavi-b", name: "Vyshnavi B", role: "Staff in Charge", initials: "VB", tier: "staff" },

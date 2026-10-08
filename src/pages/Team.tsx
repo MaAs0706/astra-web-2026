@@ -9,16 +9,22 @@ function RosterStat({ label, value }: { label: string; value: string | number })
   return <div className="flex flex-col gap-1"><span className="font-mono text-[10px] uppercase tracking-[0.2em] text-metallic-silver">{label}</span><span className="font-mono text-lg text-starlight-white sm:text-xl">{value}</span></div>;
 }
 
+function MemberAvatar({ member, featured }: { member: TeamMember; featured: boolean }) {
+  const [photoFailed, setPhotoFailed] = useState(false);
+  const photoSrc = member.photo ?? `/team/${member.id}.jpg`;
+  const style = featured ? "border-primary-purple/70 text-primary-purple" : "border-tertiary-cyan/55 text-tertiary-cyan";
+
+  if (photoFailed) return <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border font-display text-lg font-semibold ${style}`}>{member.initials}</div>;
+
+  return <img src={photoSrc} alt={`Portrait of ${member.name}`} onError={() => setPhotoFailed(true)} className={`h-14 w-14 shrink-0 rounded-full border object-cover ${style}`} />;
+}
+
 function MemberCard({ member, index, featured = false }: { member: TeamMember; index: number; featured?: boolean }) {
   return (
     <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.38, delay: Math.min(index * 0.05, 0.25) }} className={`group relative overflow-hidden rounded-xl border p-5 ${featured ? "border-primary-purple/45 bg-deep-nebula/85" : "border-metallic-silver/20 bg-space-black/55"}`}>
       <div aria-hidden="true" className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-tertiary-cyan/10 blur-2xl transition-opacity group-hover:opacity-100" />
       <div className="relative flex items-center gap-4">
-        {member.photo ? (
-          <img src={member.photo} alt={`Portrait of ${member.name}`} className={`h-14 w-14 shrink-0 rounded-full border object-cover ${featured ? "border-primary-purple/70" : "border-tertiary-cyan/55"}`} />
-        ) : (
-          <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border font-display text-lg font-semibold ${featured ? "border-primary-purple/70 text-primary-purple" : "border-tertiary-cyan/55 text-tertiary-cyan"}`}>{member.initials}</div>
-        )}
+        <MemberAvatar member={member} featured={featured} />
         <div><h3 className="font-display text-xl font-semibold text-starlight-white">{member.name}</h3><p className="mt-1 font-mono text-[10px] uppercase tracking-[0.13em] text-metallic-silver">{member.role}</p></div>
       </div>
     </motion.article>

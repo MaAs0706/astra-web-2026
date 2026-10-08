@@ -5,6 +5,6 @@ export interface TeamMember {
   initials: string;
   tier: "staff" | "executive" | "lead";
   department?: string;
-  /** Public image path, for example: /team/parvathy-gopu.jpg */
+  /** Optional override for the automatic /team/<member-id>.jpg portrait path. */
   photo?: string;
 }
