@@ -7,11 +7,11 @@ import type { TeamMember } from "@/types/TeamMember";
  */
 export const teamMembers: TeamMember[] = [
   { id: "vyshnavi-b", name: "Vyshnavi B", role: "Staff in Charge", initials: "VB", tier: "staff" },
-  { id: "ananthalakshmi-ka", name: "Ananthalakshmi KA", role: "Staff in Charge", initials: "AK", tier: "staff" },
+  { id: "ananthalakshmi-ka", name: "Ananthalakshmi KA", role: "Staff in Charge", initials: "AK", tier: "staff", photoPosition: "center 68%" },
 
   { id: "parvathy-gopu", name: "Parvathy Gopu", role: "Chairperson", initials: "PG", tier: "executive" },
-  { id: "rohit-ramesh", name: "Rohit Ramesh", role: "Vice Chairperson", initials: "RR", tier: "executive" },
-  { id: "husna-ea", name: "Husna EA", role: "Secretary", initials: "HE", tier: "executive" },
+  { id: "rohit-ramesh", name: "Rohit Ramesh", role: "Vice Chairperson", initials: "RR", tier: "executive", photoPosition: "center 78%" },
+  { id: "husna-ea", name: "Husna EA", role: "Secretary", initials: "HE", tier: "executive", photoPosition: "center 75%" },
   { id: "prarthana-suresh", name: "Prarthana Suresh", role: "Treasurer", initials: "PS", tier: "executive" },
 
   { id: "shreyas-mp", name: "Shreyas MP", role: "Space Lead", initials: "SM", tier: "lead", department: "Space" },
@@ -28,7 +28,7 @@ export const teamMembers: TeamMember[] = [
   { id: "neel-a-ved", name: "Neel A Ved", role: "Marketing Lead", initials: "NV", tier: "lead", department: "Marketing" },
   { id: "aparna-r", name: "Aparna R", role: "Documentation Lead", initials: "AR", tier: "lead", department: "Documentation" },
   { id: "krishna-santhosh", name: "Krishna Santhosh", role: "Media Lead", initials: "KS", tier: "lead", department: "Media" },
-  { id: "nevin-simon", name: "Nevin Simon", role: "Design Lead", initials: "NS", tier: "lead", department: "Design" },
+  { id: "nevin-simon", name: "Nevin Simon", role: "Design Lead", initials: "NS", tier: "lead", department: "Design", photoPosition: "center top" },
   { id: "vyshakhi-yogesh", name: "Vyshakhi Yogesh", role: "Events Lead", initials: "VY", tier: "lead", department: "Events" },
   { id: "meghashree-girish", name: "Meghashree Girish", role: "Events Lead", initials: "MG", tier: "lead", department: "Events" },
   { id: "krishna-mohan", name: "Krishna Mohan", role: "Outreach Lead", initials: "KM", tier: "lead", department: "Outreach" },

@@ -7,4 +7,6 @@ export interface TeamMember {
   department?: string;
   /** Optional override for the automatic /team/<member-id>.jpg portrait path. */
   photo?: string;
+  /** CSS object-position used to keep the portrait subject in frame. */
+  photoPosition?: string;
 }

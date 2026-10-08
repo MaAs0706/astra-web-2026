@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import logo from "@/assets/images/astra-logo.png";
 import type { TeamMember } from "@/types/TeamMember";
 
 const panelColors = [
@@ -35,20 +34,10 @@ export function CrewAccordion({ members }: { members: TeamMember[] }) {
             }`}
           >
             <div className={`absolute inset-0 bg-gradient-to-b ${panelColors[index % panelColors.length]}`} />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(255,255,255,0.16),transparent_42%)]" />
-            <div className="absolute inset-0 bg-gradient-to-t from-space-black via-space-black/30 to-transparent" />
-            <motion.div
-              aria-hidden="true"
-              className="absolute left-1/2 top-[18%] h-28 w-28 -translate-x-1/2 rounded-full border border-tertiary-cyan/35 sm:h-36 sm:w-36"
-              animate={active && !reducedMotion ? { rotate: 360 } : { rotate: 0 }}
-              transition={{ duration: 14, repeat: Infinity, ease: "linear" }}
-            >
-              <span className="absolute -right-1 top-5 h-2.5 w-2.5 rounded-full bg-tertiary-cyan shadow-[0_0_12px_rgba(0,242,254,0.9)]" />
-            </motion.div>
-            <div className="absolute left-1/2 top-[25%] flex h-16 w-16 -translate-x-1/2 items-center justify-center overflow-hidden rounded-full border border-starlight-white/40 bg-space-black/50 sm:h-20 sm:w-20">
-              <img src={logo} alt="" className="h-full w-full object-cover opacity-40" />
-              <span className="absolute font-mono text-lg text-starlight-white sm:text-xl">{member.initials}</span>
-            </div>
+            <img src={member.photo ?? `/team/${member.id}.jpg`} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} style={{ objectPosition: member.photoPosition ?? "center" }} className={`absolute inset-0 h-full w-full object-cover transition-all duration-500 ${active ? "scale-100 opacity-95" : "scale-110 opacity-35"}`} />
+            <div className="absolute inset-0 bg-gradient-to-t from-space-black via-space-black/45 to-space-black/5" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,242,254,0.16),transparent_45%)]" />
+            <span className="absolute left-4 top-4 font-mono text-[9px] uppercase tracking-[0.16em] text-tertiary-cyan/90 sm:left-5 sm:top-5">Crew {String(index + 1).padStart(2, "0")}</span>
             <div className="absolute inset-x-0 bottom-0 p-3 sm:p-5">
               <motion.span
                 className="mb-2 block h-px bg-tertiary-cyan"

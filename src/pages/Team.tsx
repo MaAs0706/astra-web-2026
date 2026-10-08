@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { DriftWall } from "@/components/team/DriftWall";
 import { getTeamMembers } from "@/services/teamService";
 import { siteConfig } from "@/constants/site";
 import type { TeamMember } from "@/types/TeamMember";
@@ -9,24 +8,22 @@ function RosterStat({ label, value }: { label: string; value: string | number })
   return <div className="flex flex-col gap-1"><span className="font-mono text-[10px] uppercase tracking-[0.2em] text-metallic-silver">{label}</span><span className="font-mono text-lg text-starlight-white sm:text-xl">{value}</span></div>;
 }
 
-function MemberAvatar({ member, featured }: { member: TeamMember; featured: boolean }) {
+function MemberPortrait({ member, featured }: { member: TeamMember; featured: boolean }) {
   const [photoFailed, setPhotoFailed] = useState(false);
   const photoSrc = member.photo ?? `/team/${member.id}.jpg`;
-  const style = featured ? "border-primary-purple/70 text-primary-purple" : "border-tertiary-cyan/55 text-tertiary-cyan";
+  const style = featured ? "border-primary-purple/60 text-primary-purple" : "border-tertiary-cyan/50 text-tertiary-cyan";
 
-  if (photoFailed) return <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-full border font-display text-lg font-semibold ${style}`}>{member.initials}</div>;
+  if (photoFailed) return <div className={`relative grid aspect-[4/3] w-full place-items-center overflow-hidden border-b bg-gradient-to-br from-deep-nebula to-space-black ${style}`}><span className="font-display text-5xl font-semibold">{member.initials}</span><span className="absolute bottom-4 font-mono text-[9px] uppercase tracking-[0.2em] text-metallic-silver/65">Portrait pending</span></div>;
 
-  return <img src={photoSrc} alt={`Portrait of ${member.name}`} onError={() => setPhotoFailed(true)} className={`h-14 w-14 shrink-0 rounded-full border object-cover ${style}`} />;
+  return <img src={photoSrc} alt={`Portrait of ${member.name}`} onError={() => setPhotoFailed(true)} style={{ objectPosition: member.photoPosition ?? "center" }} className={`w-full border-b object-cover transition duration-500 group-hover:scale-[1.03] ${featured ? "aspect-[4/3]" : "aspect-[3/4]"} ${style}`} />;
 }
 
 function MemberCard({ member, index, featured = false }: { member: TeamMember; index: number; featured?: boolean }) {
   return (
-    <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.38, delay: Math.min(index * 0.05, 0.25) }} className={`group relative overflow-hidden rounded-xl border p-5 ${featured ? "border-primary-purple/45 bg-deep-nebula/85" : "border-metallic-silver/20 bg-space-black/55"}`}>
+    <motion.article initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.38, delay: Math.min(index * 0.05, 0.25) }} className={`group relative overflow-hidden rounded-xl border ${featured ? "border-primary-purple/45 bg-deep-nebula/85" : "border-metallic-silver/20 bg-space-black/55"}`}>
       <div aria-hidden="true" className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-tertiary-cyan/10 blur-2xl transition-opacity group-hover:opacity-100" />
-      <div className="relative flex items-center gap-4">
-        <MemberAvatar member={member} featured={featured} />
-        <div><h3 className="font-display text-xl font-semibold text-starlight-white">{member.name}</h3><p className="mt-1 font-mono text-[10px] uppercase tracking-[0.13em] text-metallic-silver">{member.role}</p></div>
-      </div>
+      <div className="relative overflow-hidden"><MemberPortrait member={member} featured={featured} /></div>
+      <div className="relative p-5"><h3 className="font-display text-xl font-semibold text-starlight-white">{member.name}</h3><p className="mt-1 font-mono text-[10px] uppercase tracking-[0.13em] text-metallic-silver">{member.role}</p></div>
     </motion.article>
   );
 }
@@ -46,13 +43,6 @@ export function Team() {
     });
     return [...groups.entries()];
   }, [members]);
-  const driftItems = groupedLeads.map(([department, leads], index) => ({
-    id: department.toLowerCase(),
-    title: department,
-    detail: `${leads.length} ${leads.length === 1 ? "lead" : "leads"}`,
-    tone: ["from-secondary-blue/70 to-space-black", "from-primary-purple/70 to-deep-nebula", "from-tertiary-cyan/40 to-space-black"][index % 3],
-  }));
-
   return (
     <div className="container-astra flex flex-col gap-16 py-20 sm:gap-24">
       <motion.header initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="flex max-w-2xl flex-col gap-4">
@@ -76,11 +66,6 @@ export function Team() {
       <section className="flex flex-col gap-6" aria-labelledby="command-title">
         <div><span className="font-mono text-xs uppercase tracking-[0.2em] text-tertiary-cyan">Executive command</span><h2 id="command-title" className="mt-2 font-display text-3xl font-semibold text-starlight-white">Core leadership</h2></div>
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{executive.map((member, index) => <MemberCard key={member.id} member={member} index={index} featured />)}</div>
-      </section>
-
-      <section className="flex flex-col gap-5" aria-labelledby="crew-field-title">
-        <div><span className="font-mono text-xs uppercase tracking-[0.2em] text-tertiary-cyan">Department field</span><h2 id="crew-field-title" className="mt-2 font-display text-3xl font-semibold text-starlight-white">Teams in motion</h2></div>
-        <DriftWall items={driftItems} />
       </section>
 
       <section className="flex flex-col gap-10" aria-labelledby="departments-title">

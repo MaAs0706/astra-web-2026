@@ -4,10 +4,10 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { SectionGlow } from "@/components/common/SectionGlow";
 
 const tiles = [
-  { id: "obs-014", label: "OBS-014", gradient: "from-secondary-blue to-space-black" },
-  { id: "build-009", label: "BUILD-009", gradient: "from-primary-purple to-deep-nebula" },
-  { id: "hack-003", label: "HACK-003", gradient: "from-tertiary-cyan/60 to-space-black" },
-  { id: "obs-021", label: "OBS-021", gradient: "from-deep-nebula to-secondary-blue" },
+  { id: "gallery-1", gradient: "from-secondary-blue to-space-black" },
+  { id: "gallery-2", gradient: "from-primary-purple to-deep-nebula" },
+  { id: "gallery-3", gradient: "from-tertiary-cyan/60 to-space-black" },
+  { id: "gallery-4", gradient: "from-deep-nebula to-secondary-blue" },
 ];
 
 export function GalleryTeaser() {
@@ -39,9 +39,8 @@ export function GalleryTeaser() {
               transition={{ duration: 0.5, delay: index * 0.06 }}
               className={`group relative aspect-square overflow-hidden rounded-lg border border-metallic-silver/20 bg-gradient-to-br ${tile.gradient} transition-shadow duration-300 hover:border-tertiary-cyan/60 hover:shadow-[0_0_20px_rgba(0,242,254,0.15)]`}
             >
-              <span className="absolute bottom-2 left-2 font-mono text-[10px] uppercase tracking-[0.15em] text-starlight-white/80">
-                {tile.label}
-              </span>
+              <img src={`/gallery/${tile.id}.jpeg`} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-space-black/25 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </motion.div>
           ))}
         </div>
